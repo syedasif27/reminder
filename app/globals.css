@@ -106,6 +106,8 @@ body::after {
   color: var(--red);
   background: var(--red-dim);
 }
+
+.header-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -118,7 +120,6 @@ body::after {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 20px;
 }
 
 .header h1 {
