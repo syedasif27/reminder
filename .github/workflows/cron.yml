@@ -1,0 +1,16 @@
+name: Run Reminder Cron
+
+on:
+  schedule:
+    - cron: '* * * * *'   # every minute
+  workflow_dispatch:        # allows manual trigger from GitHub UI
+
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping reminder cron endpoint
+        run: |
+          curl -s -X GET "${{ secrets.APP_URL }}/api/cron" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            --max-time 30
