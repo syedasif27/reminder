@@ -80,7 +80,34 @@ body::after {
   text-align: center;
 }
 
-.header-badge {
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.logout-btn {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-dim);
+}
   display: inline-flex;
   align-items: center;
   gap: 6px;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { format, isPast, isToday, isTomorrow, parseISO } from "date-fns";
 
 const REPEAT_LABELS = {
@@ -31,6 +32,7 @@ function getDefaultDatetime() {
 }
 
 export default function Home() {
+  const router = useRouter();
   const [reminders, setReminders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -113,13 +115,23 @@ export default function Home() {
   const sent = reminders.filter((r) => r.is_sent);
   const totalRepeat = reminders.filter((r) => r.repeat_type !== "none" && r.is_active).length;
 
+  const handleLogout = async () => {
+    await fetch("/api/auth", { method: "DELETE" });
+    router.push("/login");
+  };
+
   return (
     <>
       <div className="container">
         {/* Header */}
         <header className="header">
-          <div className="header-badge">
-            <span>🔔</span> Personal Reminder
+          <div className="header-top">
+            <div className="header-badge">
+              <span>🔔</span> Personal Reminder
+            </div>
+            <button className="logout-btn" onClick={handleLogout} title="Sign out">
+              Sign out →
+            </button>
           </div>
           <h1>RemindMe</h1>
           <p>Set it. Forget it. Get notified on Telegram.</p>
